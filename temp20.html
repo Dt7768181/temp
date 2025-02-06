@@ -1,24 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script>
-      function showTable() {
-        let str = "";
-        let num = document.getElementById("num").value;
-        for (let i=1;i<=10;i++){
-            str += `${num} x ${i} = ${num*i}<br>`
-        }
-        root.innerHTML = str
-      }
-    </script>
-  </head>
-  <body>
-    <p><input type="number" id="num" onchange="showTable()" /></p>
-    <button onclick="showTable()">Submit</button>
-    <hr />
-    <div id="root"></div>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<style>
+  .container{
+    display:flex;
+    justify-content:center;
+  }
+  .box{
+    text-align: center;
+  }
+  .element{
+    border:1px solid black;
+    margin:10px;
+  }
+  .element:hover{
+    transform: scale(1.02);
+  }
+</style>
+<script>
+  function mul(){
+    let n=document.getElementById("num").value;
+    let str=`<div class=box>`;
+    for(let i=1;i<=10;i++){
+      str+=`<div class=element><p>${n}x${i}=${n*i}</p></div>`;
+    }
+    str+=`</div>`;
+    msg.innerHTML=str;
+  }
+</script>
+<body>
+  <div class="container">
+    <input type="number" id="num" placeholder="Enter Number" onchange="mul()">
+    <!--<button onclick="mul()">Find</button>-->
+  </div>
+<div id="msg"></div>
+</body>
 </html>

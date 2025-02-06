@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+  <script>
+    function register(){
+      let name1=document.getElementById("name").value;
+      let mail1=document.getElementById("email").value;
+      let pass1=document.getElementById("pass").value;
+      let date1=document.getElementById("date").value;
+      let data=[];
+      data.push(name1,mail1,pass1,date1);
+      msg.innerHTML=`${data}`;
+    }
+  </script>
+</head>
+<body>
+<div id="register">
+  <p><input type="text" placeholder="Enter name" id="name"></p>
+  <p><input type="text" placeholder="Enter Email" id="email"></p>
+  <p><input type="password" placeholder="Enter password" id="pass"></p>
+  <p><input type="date" placeholder="Enter date" id="date"></p>
+  <p><button onclick="register()">Register</button></p>
+</div>
+<div id="msg"></div>
+</body>
+</html>
