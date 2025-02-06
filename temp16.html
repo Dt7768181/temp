@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress ALL -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -29,7 +30,8 @@
     </style>
     <script>
         let users = [];
-
+        let str1="";
+        let str2="";
         function showform() {
             let str = `
                 <div class="container">
@@ -57,24 +59,47 @@
 
             let data = { name: name1, mail: mail1, pass: pass1 };
             users.push(data);
-            showUsers();
+            // showUsers();
+            showlogin();
         }
-
-        function showUsers() {
-            let str = "";
-            for (let i = 0; i < users.length; i++) {
-                str += `
-                    <p>${users[i].name} - ${users[i].mail} - ${users[i].pass}</p>
-                    <button class="delete-btn" onclick="deleteUser(${i})">Delete</button>
-                `;
+        function showlogin(){
+            str1 = `<div class="container">
+        <div class="box">
+            <p><input type="text" id="name" placeholder="Email address or phone number"></p>
+            <p><input type="password"  id="pwd" placeholder = "Password"></p>
+            <button onclick="chkUser()">Log in</button>
+        </div>`
+            str1+=`</div>`
+            msg.innerHTML = str1;
+        }
+        function chkUser(){
+            let email = document.getElementById("name").value;
+            let pass = document.getElementById("pwd").value;
+            for(let i=0;i<users.length;i++){
+                if(users[i].mail1 == email&&users[i].pass1 == pass){
+                    str2="VALID";
+                    break;
+                }else{
+                    str2="NOT VALID";
+                }
             }
-            document.getElementById("userList").innerHTML = str;
+            msg.innerHTML =str1+str2;
         }
-
-        function deleteUser(index) {
-            users.splice(index, 1);
-            showUsers();
-        }
+        // function showUsers() {
+        //     let str = "";
+        //     for (let i = 0; i < users.length; i++) {
+        //         str += '
+        //             <p>${users[i].name} - ${users[i].mail} - ${users[i].pass}</p>
+        //             <button class="delete-btn" onclick="deleteUser(${i})">Delete</button>
+        //         `
+        //     }
+        //     document.getElementById("userList").innerHTML = str;
+        // }
+        //
+        // function deleteUser(index) {
+        //     users.splice(index, 1);
+        //     showUsers();
+        // }
     </script>
 </head>
 <body onload="showform()">
