@@ -1,23 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-  <script>
-    function print() {
-      let mail = document.getElementById("email").value;
-      let pass = document.getElementById("pass").value;
-      msg.innerHTML = `${mail},${pass}`;
-    }
-  </script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+        input {
+            margin: 10px;
+        }
+        #reg {
+            margin: 10px;
+            width: 180px;
+        }
+        #msg {
+            margin: 10px;
+        }
+        .delete-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        let users = [];
+
+        function showform() {
+            let str = `
+                <div class="container">
+                    <div class="login">
+                        <input type="text" placeholder="Name" id="name"/><br/>
+                        <input type="text" placeholder="Enter Email" id="email"/><br/>
+                        <input type="password" placeholder="Enter password" id="pass"/><br/>
+                        <button onclick="registerUser()" id="reg">Register</button>
+                    </div>
+                </div>
+                <div id="userList"></div>
+            `;
+            msg.innerHTML = str;
+        }
+
+        function registerUser() {
+            let name1 = document.getElementById("name").value;
+            let mail1 = document.getElementById("email").value;
+            let pass1 = document.getElementById("pass").value;
+
+            if (!name1 || !mail1 || !pass1) {
+                alert("All fields are required!");
+                return;
+            }
+
+            let data = { name: name1, mail: mail1, pass: pass1 };
+            users.push(data);
+            showUsers();
+        }
+
+        function showUsers() {
+            let str = "";
+            for (let i = 0; i < users.length; i++) {
+                str += `
+                    <p>${users[i].name} - ${users[i].mail} - ${users[i].pass}</p>
+                    <button class="delete-btn" onclick="deleteUser(${i})">Delete</button>
+                `;
+            }
+            document.getElementById("userList").innerHTML = str;
+        }
+
+        function deleteUser(index) {
+            users.splice(index, 1);
+            showUsers();
+        }
+    </script>
 </head>
-<body>
-    <div id="login">
-      <h1>Login Form</h1>
-      <input type="text" placeholder="Enter Email" id="email"><br>
-      <input type="password" placeholder="Enter password" id="pass"><br>
-      <button onclick="print()">Log in</button>
-    </div>
-    <div id="msg"></div>
+<body onload="showform()">
+<div id="msg"></div>
 </body>
 </html>
