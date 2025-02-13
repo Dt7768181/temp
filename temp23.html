@@ -74,7 +74,7 @@
                     sum+=0;
                 }
             });
-            disp.innerHTML=sum;
+            disp.innerHTML="No of Items:"+sum;
         }
     </script>
 </head>
@@ -84,8 +84,8 @@
 <h3>Products</h3>
 <div id="divProducts"></div>
 <h3 onload="showTotal()">My Cart</h3>
-<div id="divCart"></div>
+<!--<div id="divCart"></div>-->
 <div id="divTotal"></div>
-<div id="disp"></div>
+<div id="disp" onclick="showCart()"></div>
 </body>
 </html>
