@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // const calc =(a,b)=>{
+        //     return a+b;
+        // }
+        // let result=calc(5,4);
+        // console.log(result);
+        // const greet=()=>{
+        //     console.log("Hello World");
+        // }
+        // const a=greet;
+        // a();
+        let products=["a","b","c","d"];
+        // for(let i in products){
+        //     console.log(index+1+"."+products[i]);
+        // }
+        products.forEach((value,index)=>console.log(index+1+"."+value));
+        let val=[21,122,23,42];
+        const num=val.map(value=> {return value+5})
+        console.log(num);
+        const nu=val.filter(value=>value<30);
+        console.log(nu);
+        const u=val.map(value=>value<30);
+        console.log(u);
+        // let a=10;
+        // if(a>5) console.log("Hello");
+        const n=val.find(value=>value<30);
+        console.log(n);
+        
+    </script>
+</body>
+</html>
