@@ -15,17 +15,30 @@
             cart[id] = 1;
             console.log(cart);
             showCart();
-        };
+            displayTotal();
 
+        };
+        const increment = (id) => {
+            cart[id]+=1;
+            showCart();
+            displayTotal();
+        }
+        const decrement = (id) => {
+            cart[id]-=1;
+            showCart();
+            displayTotal();
+        }
         const showCart = () => {
             let str = "";
             products.map((value) => {
                 if (cart[value.id]) {
                     str += `
-            <li>${value.name}-$${value.price}-<button>-</button>${cart[value.id]}<button>+</button>-${value.price*cart[value.id]}</li>
+            <li>${value.name}-$${value.price}-<button onclick="decrement(${value.id})">-</button>${cart[value.id]}<button onclick="increment(${value.id})">+</button>-${value.price*cart[value.id]}</li>
             `;
                 }
             });
+            // str+=`<p><button onclick="showTotal()">Total</button></p>`;
+            showTotal();
             divCart.innerHTML = str;
         };
         const showProducts = () => {
@@ -37,6 +50,32 @@
             });
             divProducts.innerHTML = str;
         };
+        const showTotal = () => {
+            let total=0;
+            // products.map((value) =>{
+            //     if(cart[value.id])
+            //     total+=value.price*cart[value.id];
+            // });
+            total=products.reduce((sum,value)=>{
+                if(cart[value.id])
+                    return sum + value.price * cart[value.id];
+                    return sum;
+            },0);
+            // products.map((value)=>
+            // str+=`${value.name}-${value.id}`);
+            divTotal.innerHTML="total: "+total;
+        }
+        const displayTotal = () => {
+            let sum=0;
+            products.map((value) => {
+                if(cart[value.id]){
+                    sum+=1;
+                }else{
+                    sum+=0;
+                }
+            });
+            disp.innerHTML=sum;
+        }
     </script>
 </head>
 <body onload="showProducts()">
@@ -44,7 +83,9 @@
 <hr />
 <h3>Products</h3>
 <div id="divProducts"></div>
-<h3>My Cart</h3>
+<h3 onload="showTotal()">My Cart</h3>
 <div id="divCart"></div>
+<div id="divTotal"></div>
+<div id="disp"></div>
 </body>
 </html>

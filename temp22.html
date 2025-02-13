@@ -10,24 +10,27 @@
     <h2 style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">CART</h2>
     <div id="m"></div>
     <script>
-        let str="<ul>";
-        const products=[
-            {id:1,name:"P1",price:25,quantity:0},
-            {id:2,name:"P2",price:50,quantity:0},
-            {id:3,name:"P3",price:75,quantity:0},
-        ];
-        // products.forEach((value)=>console.log(value.name,value.price));
-        // console.log(a);
-        products.map((value,index)=>{
-            str+=`<li>${value.id}  ${value.name}  ${value.price}__<button onclick="addcart(${index})">Add to cart</button></li>`;
-        });
-        str+="</ul>";
-        let str1="";
-        msg.innerHTML=str;
-        function addcart(v){
-            str1+=`<p>${products[v].id}<>${products[v].name}<>${products[v].price}<>${products.quantity}<button onclick=></p>`;
-            m.innerHTML=str1;
-        }
+        // let str="<ul>";
+        // const products=[
+        //     {id:1,name:"P1",price:25,quantity:0},
+        //     {id:2,name:"P2",price:50,quantity:0},
+        //     {id:3,name:"P3",price:75,quantity:0},
+        // ];
+        // // products.forEach((value)=>console.log(value.name,value.price));
+        // // console.log(a);
+        // products.map((value,index)=>{
+        //     str+=`<li>${value.id}  ${value.name}  ${value.price}__<button onclick="addcart(${index})">Add to cart</button></li>`;
+        // });
+        // str+="</ul>";
+        // let str1="";
+        // msg.innerHTML=str;
+        // function addcart(v){
+        //     str1+=`<p>${products[v].id}<>${products[v].name}<>${products[v].price}</p>`;
+        //     m.innerHTML=str1;
+        // }
+        const score=[12,23,34,45];
+        const total=score.reduce((sum,value)=>sum+value,0);
+        console.log(total);
     </script>
 </body>
 </html>
