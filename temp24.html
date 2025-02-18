@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <script>
+    function dcheck(){
+      let date2=new Date(document.getElementById("d").value);
+      if(date2.getDay()==1){
+        msg.innerHTML="WE ARE OPEN ";
+      }else{
+        msg.innerHTML="WE ARE CLOSED WE ARE OPEN ON WEDNESDAY";
+      }
+    }
+  </script>
+  <input type="date" id="d">
+  <button onclick="dcheck()">SUBMIT</button>
+  <div id="msg" style="font-family: 'Lucida Console'"></div>
+</body>
+</html>
