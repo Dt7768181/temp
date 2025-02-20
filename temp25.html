@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Sign up for facebook</title>
+    <link rel="icon" type="image/x-icon" href="assets/images/facebook.png">
     <style>
         body {
             background-color: #eeeeee;
@@ -18,6 +19,7 @@
             padding: 10px;
             width: 400px;
             margin: auto;
+            height: 600px;
         }
         .row {
             display: flex;
@@ -81,6 +83,15 @@
             border-radius: 5px;
             padding: 3px;
         }
+        .row1{
+            text-align: center;
+        }
+        .row1 p{
+            font-size: 13px;
+        }
+        .row input{
+            padding: 12px;
+        }
     </style>
 </head>
 <body>
@@ -112,18 +123,22 @@
         "November",
         "December",
     ];
+    let firstname=""
+    let surname=""
+    let email=""
+    let password = ""
+    let g=""
     const showData = () => {
-        let firstname = document.getElementById("firstname").value;
-        let surname = document.getElementById("surname").value;
-        let email = document.getElementById("email").value;
-        let password = document.getElementById("password").value;
+        firstname = document.getElementById("firstname").value;
+        surname = document.getElementById("surname").value;
+        email = document.getElementById("email").value;
+        password = document.getElementById("password").value;
         let gender = document.getElementsByName("gender");
-        let pronoun = document.getElementById("prSelect").value;
+        pronoun = document.getElementById("prSelect").value;
         let day = document.getElementById("day").value;
         let month = document.getElementById("month").value;
         let year = document.getElementById("year").value;
         let dob = `${day}-${month}-${year}`;
-        let g = "";
         if (gender[0].checked) g = "Female";
         if (gender[1].checked) g = "Male";
         if (gender[2].checked) g = pronoun;
@@ -134,22 +149,25 @@
           <p>Password:${password}</p>
           <p>Gender:${g}</p>
           <p>Date of Birth:${dob}</p>
-          <button>Confirm</button>
-          <button>Edit</button>
+          <button onclick="confirmForm()">Confirm</button>
+          <button onclick="showForm()">Edit</button>
         </div>
         `;
         root.innerHTML = str;
     };
-
+    const confirmForm = () => {
+        str="";
+        str=`<h1 style="font-size:25px">(NOT)COPYRIGHTED</h1>`
+        root.innerHTML = str;
+    }
     const showForm = () => {
         let str = `
-      
       <div class="row">
-        <input type="text" id="firstname" placeholder="Firstname" />
+        <input type="text" id="firstname" value='${firstname}' placeholder="Firstname" />
         <input type="text" id="surname" placeholder="Surname" />
       </div>
       <div class="row" style="justify-content: start">
-        <div class="leftCaption">
+        <div class="leftCaption" >
           Date of Birth<span class="qMark"><abbr title="Click for more information">?</abbr></span>
         </div>
       </div>
@@ -188,39 +206,44 @@
      </div>
 
       <div class="row">
-        <input type="text" id="email" placeholder="Mobule number or email address" />
+        <input type="text" id="email" placeholder="Mobile number or email address" />
       </div>
       <div class="row">
-        <input type="password" id="password" placeholder="New password" />
+        <input type="password" id="password" placeholder="New password" /><img src="assets/images/eye-crossed.png" id="ec" />
       </div>
-      <div class="row">
+      <div class="row1">
+        <p>People who use our service may have uploaded your contact information to Facebook.<a href="https://www.facebook.com/help/637205020878504">Learn more.</a></p>
+
+<p>By clicking Sign Up, you agree to our Terms, Privacy Policy and Cookies Policy. You may receive SMS notifications from us and can opt out at any time.</p>
         <button onclick='showData()'>Sign Up</button>
       </div>
       `;
         root.innerHTML = str;
+        calDate();
     };
+    const calDate = () => {
+        let str = "";
+        let dt = new Date()
+        let d = dt.getDate()
+        let m = dt.getMonth()
+        let y = dt.getFullYear()
+        for (let i = 1; i <= 31; i++) {
+            str += `<option ${i === d && "selected"}>${i}</option>`;
+        }
+        day.innerHTML = str;
+        str = "";
+        for (let i = 0; i <= 11; i++) {
+            str += `<option ${i === m && "selected"}>${months[i]}</option>`;
+        }
+        month.innerHTML = str;
+        str = "";
+        for (let i = 1905; i <= 2025; i++) {
+            str += `<option ${i === y && "selected"}>${i}</option>`;
+        }
+        year.innerHTML = str;
 
+    }
     showForm();
-    let str = "";
-    let dt = new Date()
-    let d = dt.getDate()
-    let m = dt.getMonth()
-    let y = dt.getFullYear()
-    for (let i = 1; i <= 31; i++) {
-        str += `<option ${i === d && "selected"}>${i}</option>`;
-    }
-    day.innerHTML = str;
-    str = "";
-    for (let i = 0; i <= 11; i++) {
-        str += `<option ${i === m && "selected"}>${months[i]}</option>`;
-    }
-    month.innerHTML = str;
-    str = "";
-    for (let i = 1905; i <= 2025; i++) {
-        str += `<option ${i === y && "selected"}>${i}</option>`;
-    }
-    year.innerHTML = str;
-
     const togglePronoun = () => {
         let p = document.getElementsByName("gender");
         if (p[2].checked) {
@@ -229,6 +252,17 @@
             prSelect.style.display = "none";
         }
     };
+    const passwordInput = document.getElementById("password");
+    const toggleIcon = document.getElementById("ec");
+    toggleIcon.addEventListener("click", function () {
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleIcon.src = "assets/images/eye.png"; // Change to open eye image
+        } else {
+            passwordInput.type = "password";
+            toggleIcon.src = "assets/images/eye-crossed.png"; // Change to closed eye image
+        }
+    });
 </script>
 </body>
 </html>
