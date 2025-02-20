@@ -1,108 +1,31 @@
 <!DOCTYPE html>
-<!--suppress ALL -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <style>
-        .container {
-            display: flex;
-            justify-content: center;
-        }
-        input {
-            margin: 10px;
-        }
-        #reg {
-            margin: 10px;
-            width: 180px;
-        }
-        #msg {
-            margin: 10px;
-        }
-        .delete-btn {
-            background-color: red;
-            color: white;
-            border: none;
-            padding: 5px;
-            margin: 5px;
-            cursor: pointer;
+        .c{
+            background-color: yellow;
         }
     </style>
     <script>
-        let users = [];
-        let str1="";
-        let str2="";
-        function showform() {
-            let str = `
-                <div class="container">
-                    <div class="login">
-                        <input type="text" placeholder="Name" id="name"/><br/>
-                        <input type="text" placeholder="Enter Email" id="email"/><br/>
-                        <input type="password" placeholder="Enter password" id="pass"/><br/>
-                        <button onclick="registerUser()" id="reg">Register</button>
-                    </div>
-                </div>
-                <div id="userList"></div>
-            `;
-            msg.innerHTML = str;
+        function showData(){
+            // let email = document.getElementById("email").value;
+            // let password = document.getElementById("password").value;
+            // let email=document.querySelector("#email").value;
+            // let password=document.querySelector("#password").value;
+            let email=document.getElementsByClassName("c");
+            console.log(email);
+            data.innerHTML = `${email}`;
         }
-
-        function registerUser() {
-            let name1 = document.getElementById("name").value;
-            let mail1 = document.getElementById("email").value;
-            let pass1 = document.getElementById("pass").value;
-
-            if (!name1 || !mail1 || !pass1) {
-                alert("All fields are required!");
-                return;
-            }
-
-            let data = { name: name1, mail: mail1, pass: pass1 };
-            users.push(data);
-            // showUsers();
-            showlogin();
-        }
-        function showlogin(){
-            str1 = `<div class="container">
-        <div class="box">
-            <p><input type="text" id="name" placeholder="Email address or phone number"></p>
-            <p><input type="password"  id="pwd" placeholder = "Password"></p>
-            <button onclick="chkUser()">Log in</button>
-        </div>`
-            str1+=`</div>`
-            msg.innerHTML = str1;
-        }
-        function chkUser(){
-            let email = document.getElementById("name").value;
-            let pass = document.getElementById("pwd").value;
-            for(let i=0;i<users.length;i++){
-                if(users[i].mail1 == email&&users[i].pass1 == pass){
-                    str2="VALID";
-                    break;
-                }else{
-                    str2="NOT VALID";
-                }
-            }
-            msg.innerHTML =str1+str2;
-        }
-        // function showUsers() {
-        //     let str = "";
-        //     for (let i = 0; i < users.length; i++) {
-        //         str += '
-        //             <p>${users[i].name} - ${users[i].mail} - ${users[i].pass}</p>
-        //             <button class="delete-btn" onclick="deleteUser(${i})">Delete</button>
-        //         `
-        //     }
-        //     document.getElementById("userList").innerHTML = str;
-        // }
-        //
-        // function deleteUser(index) {
-        //     users.splice(index, 1);
-        //     showUsers();
-        // }
     </script>
 </head>
-<body onload="showform()">
-<div id="msg"></div>
+<body>
+<h1>Login Form</h1>
+<p><input type="text" id="email" placeholder="Email Address" class="c"></p>
+<p><input type="password" id="password" placeholder="Password" class="c"></p>
+<button onclick="showData()">Log In</button>
+<div id="data"></div>
 </body>
 </html>
